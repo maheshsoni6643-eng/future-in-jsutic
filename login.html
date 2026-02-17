@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Portal | Enter Details</title>
+    <style>
+        :root {
+            --primary-blue: #1b4f72;
+            --accent-blue: #2980b9;
+            --bg-gray: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --border-color: #dcdde1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-gray);
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .form-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .form-header h2 { margin-bottom: 5px; font-size: 1.4rem; }
+        .form-header p { font-size: 0.85rem; opacity: 0.8; }
+
+        .form-body { padding: 30px; }
+
+        .input-group { margin-bottom: 20px; }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #154360;
+        }
+
+        .btn-cancel {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <div class="form-header">
+        <h2>Challan Registration</h2>
+        <p>Please enter the citizen and challan details below</p>
+    </div>
+
+    <div class="form-body">
+        <form action="loginad.html">
+            
+            <div class="input-group">
+                <label for="fullName">Full Legal Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g. +1 555 000 1111" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="challanId">Challan ID</label>
+                <input type="text" id="challanId" name="challanId" placeholder="CHL-XXXXXX" required>
+            </div>
+
+            <div class="input-group">
+                <label for="district">District / Region</label>
+                <select id="district" name="district" required>
+                    <option value="" disabled selected>Select your district</option>
+                    <option value="central">Central District</option>
+                    <option value="north">North Sector</option>
+                    <option value="south">South Province</option>
+                    <option value="east">East Division</option>
+                    <option value="west">West Coast</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Generate Details</button>
+            <button type="button" class="btn-cancel" onclick="window.history.back()">Go Back</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
