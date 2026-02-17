@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advocate Profile</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #f4f6f9;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background: #0b3d91;
+    color: white;
+    padding-top: 30px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    background: #062c6f;
+}
+
+/* Main Content */
+.main {
+    margin-left: 230px;
+    padding: 30px;
+    width: 100%;
+}
+
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #0b3d91;
+}
+
+.profile-header input {
+    display: none;
+}
+
+.profile-header label {
+    background: #0b3d91;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.edit-btn {
+    background: #0b3d91;
+    color: white;
+}
+
+.save-btn {
+    background: green;
+    color: white;
+    display: none;
+}
+
+/* Responsive */
+@media(max-width: 768px){
+    .sidebar{
+        display:none;
+    }
+    .main{
+        margin-left:0;
+    }
+    .profile-header{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Advocate Panel</h2>
+    <ul>
+        <li>Dashboard</li>
+        <li>Cases</li>
+        <li>Clients</li>
+        <li>Profile</li>
+        <li>Logout</li>
+    </ul>
+</div>
+
+<div class="main">
+    <div class="profile-card">
+        <div class="profile-header">
+            <img id="profileImage" src="https://via.placeholder.com/150" alt="Profile Photo">
+            <div>
+                <label for="imageUpload">Upload Photo</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+        </div>
+
+        <form id="profileForm">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" value="Adv. John Doe" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Enrollment Number</label>
+                <input type="text" value="BAR123456" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Years of Experience</label>
+                <input type="number" value="10" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Practice Areas</label>
+                <select disabled>
+                    <option>Criminal Law</option>
+                    <option>Civil Law</option>
+                    <option>Family Law</option>
+                    <option>Corporate Law</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Court of Practice</label>
+                <input type="text" value="Supreme Court" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="tel" value="9876543210" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" value="john@example.com" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Office Address</label>
+                <textarea rows="2" disabled>123 Law Street, New Delhi</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>About Me</label>
+                <textarea rows="3" disabled>Experienced advocate specializing in criminal and corporate law.</textarea>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="edit-btn" onclick="enableEdit()">Edit Profile</button>
+                <button type="submit" class="save-btn">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function enableEdit(){
+    const inputs = document.querySelectorAll('#profileForm input, #profileForm textarea, #profileForm select');
+    inputs.forEach(input => input.disabled = false);
+    document.querySelector('.save-btn').style.display = "inline-block";
+}
+
+document.getElementById('profileForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const email = document.querySelector('input[type="email"]').value;
+    const phone = document.querySelector('input[type="tel"]').value;
+
+    if(!email.includes('@')){
+        alert("Enter valid email!");
+        return;
+    }
+
+    if(phone.length < 10){
+        alert("Enter valid phone number!");
+        return;
+    }
+
+    alert("Profile Updated Successfully!");
+
+    const inputs = document.querySelectorAll('#profileForm input, #profileForm textarea, #profileForm select');
+    inputs.forEach(input => input.disabled = true);
+    document.querySelector('.save-btn').style.display = "none";
+});
+
+document.getElementById('imageUpload').addEventListener('change', function(e){
+    const reader = new FileReader();
+    reader.onload = function(){
+        document.getElementById('profileImage').src = reader.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
+</script>
+
+</body>
+</html>
